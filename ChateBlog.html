@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OdwingNews</title>
+    <link rel="stylesheet" href="dossier.css"> <!-- Assurez-vous que ce fichier CSS est correctement lié -->
+</head>
+<body>
+
+    <!-- En-tête et Menu de Navigation comme sur la page d'accueil -->
+    <h1><center>OdwingNews</center></h1>
+  
+    <h2>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="Page_1_Blog.html">Blog</a></li>
+                <li><a href="ChateBlog.html">ChateBlog</a></li>
+                <li><a href="Page2APropo.html">A propos</a></li>
+            </ul>
+        </nav>
+    </h2>
+  
+    <!-- Section de Chat -->
+    <div class="chat-container">
+        <div class="chat-header">
+            Chat en Direct
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <!-- Les messages vont apparaître ici -->
+        </div>
+        <div class="chat-input-container">
+            <input type="text" id="chatInput" class="chat-input" placeholder="Tapez un message..." />
+            <button class="chat-submit" onclick="sendMessage()">Envoyer</button>
+        </div>
+    </div>
+
+    <script>
+        // Fonction pour envoyer le message
+        function sendMessage() {
+            var input = document.getElementById("chatInput");
+            var message = input.value;
+
+            if (message.trim() !== "") {
+                // Créer un nouveau div pour afficher le message
+                var messageElement = document.createElement("div");
+                messageElement.classList.add("message", "user");
+                messageElement.textContent = message;
+
+                // Ajouter le message dans la section des messages
+                var chatMessages = document.getElementById("chatMessages");
+                chatMessages.appendChild(messageElement);
+
+                // Nettoyer le champ de saisie
+                input.value = "";
+
+                // Scroller vers le bas pour voir le nouveau message
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+        }
+
+        // Envoyer le message quand on appuie sur la touche "Entrée"
+        document.getElementById("chatInput").addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        });
+    </script>
+
+    <style>
+        /* Styles globaux comme dans l'index.html */
+        body {
+            background-color: #7196af; /* Couleur de fond pour le corps de la page */
+            margin: 0; /* Enlève les marges par défaut */
+            font-family: Arial, sans-serif;
+        }
+        
+        h1 {
+            background-color: transparent; /* Fond transparent pour le titre */
+            color: rgb(3, 3, 3); /* Couleur du texte du titre */
+            padding: 20px; /* Ajoute un peu de padding autour du titre */
+        }
+
+        /* Styles spécifiques au chat */
+        .chat-container {
+            width: 400px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            margin: 40px auto; /* Centrer le chat */
+        }
+
+        .chat-header {
+            background-color: #3498db;
+            padding: 10px;
+            color: white;
+            text-align: center;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+            border-bottom: 1px solid #ddd;
+            height: 300px;
+        }
+
+        .message {
+            margin-bottom: 10px;
+            padding: 8px;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+            width: fit-content;
+        }
+
+        .message.user {
+            background-color: #3498db;
+            color: white;
+            align-self: flex-end;
+        }
+
+        .chat-input-container {
+            display: flex;
+            padding: 10px;
+            background-color: #f4f4f4;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .chat-submit {
+            padding: 10px 15px;
+            border: none;
+            background-color: #3498db;
+            color: white;
+            border-radius: 5px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+    </style>
+
+</body>
+</html>
